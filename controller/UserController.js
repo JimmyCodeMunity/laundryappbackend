@@ -47,16 +47,16 @@ const makeOrder = async (req, res) => {
 
        
 
-        const existingOrder = await Order.findOne({ 
-            laundryname: laundryname,
-            customername: customername,
-            orderstatus: { $ne: "complete" } // Ensuring the order status is not equal to "complete"
-        });
+        // const existingOrder = await Order.findOne({ 
+        //     laundryname: laundryname,
+        //     customername: customername,
+        //     orderstatus: { $ne: "complete" } // Ensuring the order status is not equal to "complete"
+        // });
 
         //check if user already existing
-        if (existingOrder) {
-            res.status(400).json({ message: 'order already exists' });
-        } else {
+        // if (existingOrder) {
+        //     res.status(400).json({ message: 'order already exists' });
+        // } else {
             // const hashedPass = await bcrypt.hash(password, 10);
             const order = await Order.create({
                 laundryname,
@@ -76,7 +76,7 @@ const makeOrder = async (req, res) => {
 
             res.status(200).json(order);
             console.log("Order PLaced Successfully");
-        }
+        // }
 
     } catch (error) {
         console.log(error);
